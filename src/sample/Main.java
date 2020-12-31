@@ -17,6 +17,8 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         //Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        // Manipulowanie zawartością wyskakującego okienka bezpośrednio,
+        // zamiast w pliku .fxml
         GridPane root = new GridPane();
         root.setAlignment(Pos.CENTER);
         root.setVgap(15);
@@ -28,7 +30,7 @@ public class Main extends Application {
         root.getChildren().add(greeting);
 
         primaryStage.setTitle("Hello JavaFX");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.setScene(new Scene(root, 500, 275));
         primaryStage.show();
     }
 
