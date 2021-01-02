@@ -1,9 +1,7 @@
-package sample;
+package m00_sample;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
@@ -30,7 +28,7 @@ public class Main extends Application {
         root.getChildren().add(greeting);
 
         primaryStage.setTitle("Hello JavaFX");
-        primaryStage.setScene(new Scene(root, 500, 275));
+        primaryStage.setScene(new Scene(root, 300, 175));
         primaryStage.show();
     }
 

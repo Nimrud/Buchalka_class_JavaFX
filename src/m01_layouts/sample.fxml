@@ -1,0 +1,16 @@
+<?import javafx.scene.layout.GridPane?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<GridPane fx:controller="m01_layouts.Controller"
+          xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="20" vgap="20"
+          gridLinesVisible="true">
+    <columnConstraints>
+        <ColumnConstraints percentWidth="30.0"/>
+        <ColumnConstraints percentWidth="70.0"/>
+    </columnConstraints>
+    <Button text="Przycisk pierwszy" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+    <Button text="Przycisk drugi" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+    <Button text="Przycisk trzeci" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+    <Button text="Przycisk czwarty" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+</GridPane>
