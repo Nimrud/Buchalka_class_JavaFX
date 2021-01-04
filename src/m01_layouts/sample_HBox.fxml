@@ -1,0 +1,18 @@
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.geometry.Insets?>
+<HBox fx:controller="m01_layouts.Controller"
+      xmlns:fx="http://javafx.com/fxml" alignment="bottom_right"
+      style="-fx-border-color: red; -fx-border-width: 3; -fx-border-style: dashed"
+      spacing="10">
+
+    <padding>   <!-- odległość przycisków od krawędzi okna -->
+        <Insets bottom="10" right="10"/>
+    </padding>
+
+    <Button text="OK" prefWidth="90"/>
+    <Button text="Anuluj" prefWidth="90"/>
+    <Button text="Pomoc" prefWidth="90"/>
+
+
+</HBox>
