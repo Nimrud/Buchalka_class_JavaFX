@@ -23,4 +23,13 @@
                 BorderPane.alignment="CENTER"
                 style="-fx-border-color: green; -fx-border-width: 2; -fx-border-style: dashed"/>
         </top>
+    <left>
+        <Label text="Lewa sekcja" alignment="CENTER"/>
+    </left>
+    <right>
+        <Label text="Prawa sekcja" alignment="CENTER"/>
+    </right>
+    <center>
+        <Label text="Sekcja środkowa, z długim, nawet bardzo długim, tekstem" alignment="CENTER"/>
+    </center>
 </BorderPane>

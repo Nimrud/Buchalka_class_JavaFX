@@ -1,0 +1,17 @@
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.control.Button?>
+<FlowPane fx:controller="m01_layouts.Controller"
+          xmlns:fx="http://javafx.com/fxml" orientation="VERTICAL">
+    <Button text="Przycisk pierwszy"/>
+    <Button text="Przycisk drugi"/>
+    <Button text="Przycisk trzeci"/>
+    <Button text="Przycisk czwarty"/>
+    <Button text="Przycisk piąty"/>
+    <Button text="Przycisk szósty"/>
+    <Button text="Przycisk siódmy"/>
+    <Button text="Przycisk ósmy"/>
+    <Button text="Przycisk dziewiąty"/>
+    <Button text="Przycisk dziesiąty"/>
+    <!-- We FlowPane każdy przycisk ma szerokość dynamicznie dostosowaną do zawartości -->
+    <!-- Jeśli chcemy mieć wszystkie przyciski tej same wielkości i wyśrodkowane - używamy TilePane -->
+</FlowPane>

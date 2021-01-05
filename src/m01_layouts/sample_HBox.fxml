@@ -13,6 +13,6 @@
     <Button text="OK" prefWidth="90"/>
     <Button text="Anuluj" prefWidth="90"/>
     <Button text="Pomoc" prefWidth="90"/>
-
+    <!-- W HBox "dzieci" są rozmieszczone horyzontalnie (jest jeszcze VBox), w jednym rzędzie -->
 
 </HBox>

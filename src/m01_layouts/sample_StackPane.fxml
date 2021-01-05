@@ -1,0 +1,10 @@
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<StackPane fx:controller="m01_layouts.Controller"
+           xmlns:fx="http://javafx.com/fxml">
+    <!-- W StackPane elementy są nakładane na siebie - ważna jest kolejność ich dodania w kodzie -->
+    <!-- wykorzystanie: np. dodanie obrazka z napisem na wierzchu -->
+    <Button text="Przycisk pierwszy" style="-fx-background-color: red"/>
+    <Label text="Tekst z etykietki" style="-fx-background-color: green"/>
+</StackPane>
