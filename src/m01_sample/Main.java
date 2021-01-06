@@ -1,4 +1,4 @@
-package m00_sample;
+package m01_sample;
 
 import javafx.application.Application;
 import javafx.geometry.Pos;
