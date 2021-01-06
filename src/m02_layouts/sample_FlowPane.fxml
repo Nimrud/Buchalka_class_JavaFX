@@ -1,6 +1,6 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.control.Button?>
-<FlowPane fx:controller="m01_layouts.Controller"
+<FlowPane fx:controller="m02_layouts.Controller"
           xmlns:fx="http://javafx.com/fxml" orientation="VERTICAL">
     <Button text="Przycisk pierwszy"/>
     <Button text="Przycisk drugi"/>

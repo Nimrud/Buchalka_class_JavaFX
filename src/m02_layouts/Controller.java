@@ -1,4 +1,4 @@
-package m00_sample;
+package m02_layouts;
 
 public class Controller {
 }
