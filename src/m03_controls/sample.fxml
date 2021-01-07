@@ -2,11 +2,31 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.geometry.Insets?>
 
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.control.Label?>
 <GridPane fx:controller="m03_controls.Controller"
           xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
     <padding>
         <Insets top="10"/>
     </padding>
 
-    <Button GridPane.rowIndex="0" GridPane.columnIndex="0" text="Kliknij mnie"/>
+    <Button GridPane.rowIndex="0" GridPane.columnIndex="0" text="Kliknij mnie">
+        <graphic>
+            <ImageView>
+                <!-- przez @/ przenosimy się do roota (czyli projektu JavaFX_basics) -->
+                <!-- dalej program szuka katalogu w dołączonym do projektu pliku .jar -->
+                <Image url="@/toolbarButtonGraphics/general/TipOfTheDay24.gif"/>
+            </ImageView>
+        </graphic>
+    </Button>
+
+    <Label GridPane.rowIndex="0" GridPane.columnIndex="1" text="To jest etykietka">
+        <graphic>
+            <ImageView>
+                <Image url="@/toolbarButtonGraphics/general/Information24.gif"/>
+            </ImageView>
+        </graphic>
+    </Label>
+
 </GridPane>
