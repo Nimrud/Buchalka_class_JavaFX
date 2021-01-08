@@ -11,6 +11,12 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<?import javafx.scene.control.ChoiceBox?>
 <GridPane fx:controller="m03_controls.Controller"
           xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
     <padding>
@@ -59,5 +65,36 @@
     </VBox>
 
     <ToggleButton text="Kliknij mnie" GridPane.rowIndex="5"/>
+
+    <TextField GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+
+    <PasswordField GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+
+    <ComboBox GridPane.rowIndex="7" GridPane.columnIndex="0" GridPane.columnSpan="2"
+                editable="true">
+                <!-- editable daje możliwość edycji opcji z listy -->
+        <items>
+            <FXCollections fx:factory="observableArrayList">
+                <String fx:value="Opcja 1"/>
+                <String fx:value="Opcja 2"/>
+                <String fx:value="Opcja 3"/>
+                <String fx:value="Opcja 4"/>
+            </FXCollections>
+        </items>
+        <!-- value służy do zaznaczania opcji domyślnej na liście rozwijalnej -->
+        <value>
+            <String fx:value="Opcja 3"/>
+        </value>
+    </ComboBox>
+
+    <ChoiceBox GridPane.rowIndex="7" GridPane.columnIndex="1">
+        <items>
+            <FXCollections fx:factory="observableArrayList">
+                <String fx:value="Wariant 1"/>
+                <String fx:value="Wariant 2"/>
+                <String fx:value="Wariant 3"/>
+            </FXCollections>
+        </items>
+    </ChoiceBox>
 
 </GridPane>
