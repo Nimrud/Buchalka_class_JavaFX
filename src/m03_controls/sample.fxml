@@ -8,6 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.CheckBox?>
 <GridPane fx:controller="m03_controls.Controller"
           xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
     <padding>
@@ -49,5 +50,9 @@
             toggleGroup="firstToggleGroup"/>
     <RadioButton GridPane.rowIndex="3" GridPane.columnIndex="0" text="Radio 3"
             toggleGroup="firstToggleGroup"/>
+
+    <CheckBox text="Zapisz się do naszego newslettera" GridPane.rowIndex="4"
+              indeterminate="true"/>
+
 
 </GridPane>
