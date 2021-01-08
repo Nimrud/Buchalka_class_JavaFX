@@ -9,6 +9,8 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.ToggleButton?>
 <GridPane fx:controller="m03_controls.Controller"
           xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
     <padding>
@@ -45,14 +47,17 @@
         <ToggleGroup fx:id="firstToggleGroup"/>
     </fx:define>
     <RadioButton GridPane.rowIndex="1" GridPane.columnIndex="0" text="Radio 1"
-            toggleGroup="firstToggleGroup"/>
+            toggleGroup="$firstToggleGroup"/>
     <RadioButton GridPane.rowIndex="2" GridPane.columnIndex="0" text="Radio 2"
-            toggleGroup="firstToggleGroup"/>
+            toggleGroup="$firstToggleGroup"/>
     <RadioButton GridPane.rowIndex="3" GridPane.columnIndex="0" text="Radio 3"
-            toggleGroup="firstToggleGroup"/>
+            toggleGroup="$firstToggleGroup" selected="true"/>
 
-    <CheckBox text="Zapisz się do naszego newslettera" GridPane.rowIndex="4"
-              indeterminate="true"/>
+    <VBox GridPane.rowIndex="4" GridPane.columnIndex="0" spacing="10">
+        <CheckBox text="Akceptuję warunki regulaminu"/>
+        <CheckBox text="Zapisz się do naszego newslettera" indeterminate="true"/>
+    </VBox>
 
+    <ToggleButton text="Kliknij mnie" GridPane.rowIndex="5"/>
 
 </GridPane>
