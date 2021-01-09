@@ -17,13 +17,19 @@
 <?import javafx.collections.FXCollections?>
 <?import java.lang.String?>
 <?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.Accordion?>
 <GridPane fx:controller="m03_controls.Controller"
           xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
     <padding>
         <Insets top="10"/>
     </padding>
 
-    <Button GridPane.rowIndex="0" GridPane.columnIndex="0" text="Kliknij mnie">
+    <Button GridPane.rowIndex="0" GridPane.columnIndex="0" text="Button z ikonką">
         <graphic>
             <ImageView>
                 <!-- przez @/ przenosimy się do roota (czyli projektu JavaFX_basics) -->
@@ -52,49 +58,83 @@
     <fx:define>
         <ToggleGroup fx:id="firstToggleGroup"/>
     </fx:define>
-    <RadioButton GridPane.rowIndex="1" GridPane.columnIndex="0" text="Radio 1"
+    <RadioButton GridPane.rowIndex="1" GridPane.columnIndex="0" text="RadioButton 1"
             toggleGroup="$firstToggleGroup"/>
-    <RadioButton GridPane.rowIndex="2" GridPane.columnIndex="0" text="Radio 2"
+    <RadioButton GridPane.rowIndex="2" GridPane.columnIndex="0" text="RadioButton 2"
             toggleGroup="$firstToggleGroup"/>
-    <RadioButton GridPane.rowIndex="3" GridPane.columnIndex="0" text="Radio 3"
+    <RadioButton GridPane.rowIndex="3" GridPane.columnIndex="0" text="RadioButton 3"
             toggleGroup="$firstToggleGroup" selected="true"/>
 
     <VBox GridPane.rowIndex="4" GridPane.columnIndex="0" spacing="10">
-        <CheckBox text="Akceptuję warunki regulaminu"/>
+        <CheckBox text="CheckBox"/>
         <CheckBox text="Zapisz się do naszego newslettera" indeterminate="true"/>
     </VBox>
 
-    <ToggleButton text="Kliknij mnie" GridPane.rowIndex="5"/>
+    <ToggleButton text="ToggleButton" GridPane.rowIndex="5"/>
 
-    <TextField GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+    <TextField GridPane.rowIndex="6" GridPane.columnIndex="0" promptText="TextField"/>
 
-    <PasswordField GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+    <PasswordField GridPane.rowIndex="6" GridPane.columnIndex="1" promptText="PasswordField"/>
 
     <ComboBox GridPane.rowIndex="7" GridPane.columnIndex="0" GridPane.columnSpan="2"
                 editable="true">
                 <!-- editable daje możliwość edycji opcji z listy -->
         <items>
             <FXCollections fx:factory="observableArrayList">
-                <String fx:value="Opcja 1"/>
-                <String fx:value="Opcja 2"/>
-                <String fx:value="Opcja 3"/>
-                <String fx:value="Opcja 4"/>
+                <String fx:value="ComboBox 1"/>
+                <String fx:value="ComboBox 2"/>
+                <String fx:value="ComboBox 3"/>
+                <String fx:value="ComboBox 4"/>
             </FXCollections>
         </items>
         <!-- value służy do zaznaczania opcji domyślnej na liście rozwijalnej -->
         <value>
-            <String fx:value="Opcja 3"/>
+            <String fx:value="ComboBox 3"/>
         </value>
     </ComboBox>
 
     <ChoiceBox GridPane.rowIndex="7" GridPane.columnIndex="1">
         <items>
             <FXCollections fx:factory="observableArrayList">
-                <String fx:value="Wariant 1"/>
-                <String fx:value="Wariant 2"/>
-                <String fx:value="Wariant 3"/>
+                <String fx:value="ChoiceBox 1"/>
+                <String fx:value="ChoiceBox 2"/>
+                <String fx:value="ChoiceBox 3"/>
             </FXCollections>
         </items>
     </ChoiceBox>
+
+    <Slider GridPane.rowIndex="8" GridPane.columnIndex="0" GridPane.columnSpan="4"
+                min="0" max="100" showTickLabels="true" showTickMarks="true"
+                minorTickCount="4" snapToTicks="true" orientation="HORIZONTAL">
+        <!-- showTickLabels dodaje wartości liczbowe na suwaku -->
+        <!-- showTickLabels dodaje podziałki na suwaku -->
+        <!-- minorTickCount określa liczbę podziałek pomiędzy wartościami liczbowymi -->
+        <!-- snapToTicks przesuwa znacznik na najbliższą podziałkę -->
+    </Slider>
+
+    <Spinner GridPane.rowIndex="8" GridPane.columnIndex="4" min="0" max="100"
+             editable="true" initialValue="37"/>
+    <!-- pozwala na wprowadzenie liczby dokładniej niż Slider -->
+
+    <ColorPicker GridPane.rowIndex="9" GridPane.columnIndex="0"/>
+
+    <DatePicker GridPane.rowIndex="9" GridPane.columnIndex="1"/>
+    <!-- kalendarz -->
+
+    <Accordion GridPane.rowIndex="11" GridPane.columnIndex="0" GridPane.columnSpan="2"
+                expandedPane="$expanded">
+        <!-- rozwijalne kafelki -->
+        <panes>
+            <TitledPane text="TitledPane 1">
+                <Label text="Label 1 in TitledPane"/>
+            </TitledPane>
+            <TitledPane text="TitledPane 2" fx:id="expanded">
+                <Label text="Label 2 in TitledPane"/>
+            </TitledPane>
+            <TitledPane text="TitledPane 2">
+                <Label text="Label 3 in TitledPane"/>
+            </TitledPane>
+        </panes>
+    </Accordion>
 
 </GridPane>
