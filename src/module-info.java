@@ -6,4 +6,5 @@ module JavaFX.basics {
     opens m01_sample;
     opens m02_layouts;
     opens m03_controls;
+    opens m04_events;
 }
