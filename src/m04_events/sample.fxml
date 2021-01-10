@@ -5,8 +5,9 @@
 <GridPane fx:controller="m04_events.Controller"
           xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
     <TextField GridPane.rowIndex="0" GridPane.columnIndex="0"
-        fx:id="textField1"/>
-    <Button text="Potwierdź wprowadzenie tekstu" GridPane.rowIndex="1" GridPane.columnIndex="0"
-            onAction="#onButtonClick"/>
-
+        fx:id="textField1" onKeyReleased="#handleKeyReleased"/>
+    <Button text="Potwierdź wprowadzenie tekstu (#1)" GridPane.rowIndex="1" GridPane.columnIndex="0"
+            onAction="#onButtonClick" fx:id="button1"/>
+    <Button text="Potwierdź wprowadzenie tekstu (#2)" GridPane.rowIndex="2" GridPane.columnIndex="0"
+            onAction="#onButtonClick" fx:id="button2"/>
 </GridPane>
