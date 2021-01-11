@@ -3,6 +3,7 @@ package m04_events;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 
 public class Controller {
@@ -13,6 +14,8 @@ public class Controller {
     private Button button1;
     @FXML
     private Button button2;
+    @FXML
+    private CheckBox checkBox;
 
 
     @FXML
@@ -26,6 +29,12 @@ public class Controller {
             System.out.println("Wprowadzono tekst: \"" + textField1.getText() + "\", aktywując przycisk #" + button2.getId());
         } else {
             System.out.println("Błąd! Sformatuj dysk C, aby kontynuować");
+        }
+
+        if (checkBox.isSelected()){
+            textField1.clear();
+            button1.setDisable(true);
+            button2.setDisable(true);
         }
     }
 
@@ -43,5 +52,10 @@ public class Controller {
     public void initialize(){
         button1.setDisable(true);
         button2.setDisable(true);
+    }
+
+    @FXML
+    public void handleChange(){
+        System.out.println("Checkbox " + (checkBox.isSelected() ? "jest" : "nie jest") + " zaznaczony");
     }
 }
