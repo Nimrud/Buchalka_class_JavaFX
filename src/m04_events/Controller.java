@@ -1,9 +1,11 @@
 package m04_events;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 public class Controller {
@@ -16,6 +18,8 @@ public class Controller {
     private Button button2;
     @FXML
     private CheckBox checkBox;
+    @FXML
+    private Label outputLabel;
 
 
     @FXML
@@ -30,6 +34,32 @@ public class Controller {
         } else {
             System.out.println("Błąd! Sformatuj dysk C, aby kontynuować");
         }
+
+        // poniżej stworzenie nowego procesu, który zajmie się obsługą wprowadzonych danych
+        // dzięki temu dzieje się to "w tle" i nie spowalnia UI
+        Runnable task = new Runnable() {
+            @Override
+            public void run() {
+                try{
+                    Thread.sleep(4000);    // symulacja długotrwałego procesu
+
+                    // po 4 sekundach wykona się poniższy kod
+                    // w międzyczasie użytkownik może dalej pracować z UI (nie ma zwiechy)
+                    Platform.runLater(new Runnable() {
+                        // Platform.runLater() jest konieczny, ponieważ JavaFX nie obsługuje wielu równoczesnych wątków
+                        @Override
+                        public void run() {
+                            outputLabel.setText("Proces zakończony");
+                        }
+                    });
+
+                } catch(InterruptedException event) {
+                    // na razie nie ma potrzeby tu nic umieszczać
+                }
+            }
+        };     // średnik jest potrzebny na końcu Runnable
+        // poniżej jeszcze trzeba zarządzić, żeby Runnable się wykonał
+        new Thread(task).start();
 
         if (checkBox.isSelected()){
             textField1.clear();
