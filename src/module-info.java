@@ -7,4 +7,5 @@ module JavaFX.basics {
     opens m02_layouts;
     opens m03_controls;
     opens m04_events;
+    opens m05_application1_TODO_list;
 }
