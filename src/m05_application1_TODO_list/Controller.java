@@ -1,8 +1,10 @@
 package m05_application1_TODO_list;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TextArea;
 import m05_application1_TODO_list.datamodel.TodoItem;
 
 import java.time.LocalDate;
@@ -13,7 +15,11 @@ import java.util.List;
 public class Controller {
     private List<TodoItem> todoItems;
     @FXML
-    private ListView todoListView;
+    private ListView<TodoItem> todoListView;
+    @FXML
+    private TextArea todoDescription;
+    @FXML
+    private Label todoDeadline;
 
     public void initialize(){
         TodoItem item1 = new TodoItem("Dzień kobiet", "Kupić kwiaty mamie i siostrze",
@@ -36,6 +42,9 @@ public class Controller {
 
     @FXML
     public void handleClickListItem(){
-
+        TodoItem item = todoListView.getSelectionModel().getSelectedItem();
+        //System.out.println("Wybrany rekord to " + item);
+        todoDescription.setText(item.getDetails());
+        todoDeadline.setText(item.getDeadline().toString());
     }
 }
