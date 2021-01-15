@@ -1,5 +1,7 @@
 package m05_application1_TODO_list;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -9,6 +11,7 @@ import m05_application1_TODO_list.datamodel.TodoItem;
 
 import java.time.LocalDate;
 import java.time.Month;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,12 +37,31 @@ public class Controller {
         todoItems.add(item3);
         todoItems.add(item4);
 
+        // poniższy kod odpowiada za automatyczne wyświetlenie opisu pierwszego rekordu z listy
+        // ten kod robi to samo, co metoda handleClickListItem (na dole), ale za pomocą Listenera
+        todoListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<TodoItem>() {
+            @Override
+            public void changed(ObservableValue<? extends TodoItem> observableValue, TodoItem todoItem, TodoItem t1) {
+                if (t1 != null){
+                    TodoItem item = todoListView.getSelectionModel().getSelectedItem();
+                    todoDescription.setText(item.getDetails());
+
+                    // formatowanie daty:
+                    DateTimeFormatter date = DateTimeFormatter.ofPattern("d MMMM yyyy");
+                    todoDeadline.setText(date.format(item.getDeadline()));
+                }
+            }
+        });
+
         todoListView.getItems().setAll(todoItems);
         todoListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         // powyższe ogranicza możliwość wybrania tylko jednego rekordu z wyświetlanej listy
+        todoListView.getSelectionModel().selectFirst();
+        // powyższa metoda automatycznie zaznacza pierwszy rekord przy załadowaniu
 
     }
 
+    // wyświetlanie zawartości przy pomocy onMouseClicked w fxml
     @FXML
     public void handleClickListItem(){
         TodoItem item = todoListView.getSelectionModel().getSelectedItem();

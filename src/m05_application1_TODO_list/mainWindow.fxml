@@ -8,8 +8,9 @@
 <BorderPane fx:controller="m05_application1_TODO_list.Controller"
             xmlns:fx="http://javafx.com/fxml">
     <left>
-        <ListView fx:id="todoListView" onMouseClicked="#handleClickListItem">
-
+        <ListView fx:id="todoListView" >
+                  <!-- po dodaniu Listenera można wykasować odwołanie do metody
+                  onMouseClicked="#handleClickListItem"  -->
         </ListView>
     </left>
 
@@ -18,7 +19,7 @@
     </center>
 
     <bottom>
-        <HBox>
+        <HBox style="-fx-background-color: white">
             <Label text="Deadline: ">
                 <font>
                     <Font name="Times New Roman" size="20"/>
