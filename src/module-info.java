@@ -8,4 +8,5 @@ module JavaFX.basics {
     opens m03_controls;
     opens m04_events;
     opens m05_application1_TODO_list;
+    opens m06_application_singleton;
 }
