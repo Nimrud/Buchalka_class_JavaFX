@@ -35,10 +35,10 @@ public class TodoData {
         return todoItems;
     }
 
-    public TodoData setTodoItems(List<TodoItem> todoItems) {
-        this.todoItems = todoItems;
-        return this;
-    }
+//    public TodoData setTodoItems(List<TodoItem> todoItems) {
+//        this.todoItems = todoItems;
+//        return this;
+//    }
 
     public void loadTodoItems() throws IOException{
         todoItems = FXCollections.observableArrayList();
