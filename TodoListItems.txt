@@ -3,3 +3,6 @@ Imieniny Adama	Kupić prezent Adamowi	24 grudnia 2021
 Imieniny Ewy	Kupić prezent Ewie	24 grudnia 2021
 Stomatolog	Przegląd uzębienia	6 maja 2021
 Zakupy	Kupić kaszę	21 stycznia 2021
+Nowa notatka	Notatka dodana przy pomocy okna dialogowego	20 stycznia 2021
+Nowa notatka nr 2	Sprawdzenie poprawności odświeżania listy	21 stycznia 2021
+Notatka nr 3	Sprawdza poprawność domyślnego zaznaczenia	22 stycznia 2021

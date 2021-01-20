@@ -4,17 +4,13 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import m06_application_singleton.datamodel.TodoData;
 import m06_application_singleton.datamodel.TodoItem;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.Month;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -71,9 +67,13 @@ public class Controller {
         // trzeba wię przypisać mu ID i odwołać się do niego w kontrolerze za pomocą @FXML
         dialog.initOwner(mainBorderPane.getScene().getWindow());
 
+        dialog.setTitle("Dodanie nowej notatki do listy");
+
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("todoItemDialog.fxml"));
+
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("todoItemDialog.fxml"));
-            dialog.getDialogPane().setContent(root);
+            dialog.getDialogPane().setContent(fxmlLoader.load());
         } catch (IOException e) {
             System.out.println("Nie udało się załadować okienka dialogowego");
             e.printStackTrace();
@@ -86,7 +86,12 @@ public class Controller {
         // poniższe polecenie wyświetla okienko, a następnie CZEKA na akcję użytkownika
         Optional<ButtonType> result = dialog.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
-            System.out.println("wciśnięto OK");
+            // System.out.println("wciśnięto OK");
+            DialogController controller = fxmlLoader.getController();
+            TodoItem newItemOnList = controller.processResults();
+            // poniższy kod odświeża zawartość listy:
+            todoListView.getItems().setAll(TodoData.getInstance().getTodoItems());
+            todoListView.getSelectionModel().select(newItemOnList);
         } else {
             System.out.println("wciśnięto Anuluj");
         }
