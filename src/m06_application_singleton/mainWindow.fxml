@@ -9,12 +9,13 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SeparatorMenuItem?>
 <BorderPane fx:controller="m06_application_singleton.Controller"
+            fx:id="mainBorderPane"
             xmlns:fx="http://javafx.com/fxml">
     <top>
         <MenuBar>
             <Menu text="Plik">
                 <items>
-                    <MenuItem text="Nowa notatka..."/>
+                    <MenuItem text="Nowa notatka..." onAction="#showNewItemDialog"/>
                     <SeparatorMenuItem/>
                     <MenuItem text="Exit"/>
                 </items>

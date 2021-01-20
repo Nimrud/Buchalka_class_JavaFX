@@ -3,18 +3,20 @@ package m06_application_singleton;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.SelectionMode;
-import javafx.scene.control.TextArea;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.control.*;
+import javafx.scene.layout.BorderPane;
 import m06_application_singleton.datamodel.TodoData;
 import m06_application_singleton.datamodel.TodoItem;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class Controller {
     private List<TodoItem> todoItems;
@@ -24,6 +26,8 @@ public class Controller {
     private TextArea todoDescription;
     @FXML
     private Label todoDeadline;
+    @FXML
+    private BorderPane mainBorderPane;
 
     public void initialize(){
 //        TodoItem item1 = new TodoItem("Dzień kobiet", "Kupić kwiaty mamie i siostrze",
@@ -57,5 +61,34 @@ public class Controller {
         todoListView.getItems().setAll(TodoData.getInstance().getTodoItems());
         todoListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         todoListView.getSelectionModel().selectFirst();
+    }
+
+    @FXML
+    public void showNewItemDialog() {
+        Dialog<ButtonType> dialog = new Dialog<>();
+        // dobrą praktyką jest ustawianie rodzica (parent/owner) dla okna dialogowego, które jest z niego otwierane:
+        // owner musi być typu "window"
+        // trzeba wię przypisać mu ID i odwołać się do niego w kontrolerze za pomocą @FXML
+        dialog.initOwner(mainBorderPane.getScene().getWindow());
+
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("todoItemDialog.fxml"));
+            dialog.getDialogPane().setContent(root);
+        } catch (IOException e) {
+            System.out.println("Nie udało się załadować okienka dialogowego");
+            e.printStackTrace();
+            return;
+        }
+
+        dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
+        dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+
+        // poniższe polecenie wyświetla okienko, a następnie CZEKA na akcję użytkownika
+        Optional<ButtonType> result = dialog.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            System.out.println("wciśnięto OK");
+        } else {
+            System.out.println("wciśnięto Anuluj");
+        }
     }
 }
