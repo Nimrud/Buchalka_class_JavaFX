@@ -30,7 +30,7 @@
     </left>
 
     <center>
-        <TextArea fx:id="todoDescription"/>
+        <TextArea fx:id="todoDescription" wrapText="true"/>
     </center>
 
     <bottom>

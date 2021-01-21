@@ -54,7 +54,7 @@ public class Controller {
             }
         });
 
-        todoListView.getItems().setAll(TodoData.getInstance().getTodoItems());
+        todoListView.setItems(TodoData.getInstance().getTodoItems());
         todoListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         todoListView.getSelectionModel().selectFirst();
     }
@@ -86,14 +86,15 @@ public class Controller {
         // poniższe polecenie wyświetla okienko, a następnie CZEKA na akcję użytkownika
         Optional<ButtonType> result = dialog.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
-            // System.out.println("wciśnięto OK");
+            //System.out.println("wciśnięto OK");
             DialogController controller = fxmlLoader.getController();
             TodoItem newItemOnList = controller.processResults();
             // poniższy kod odświeża zawartość listy:
-            todoListView.getItems().setAll(TodoData.getInstance().getTodoItems());
+            //todoListView.getItems().setAll(TodoData.getInstance().getTodoItems());
+            // nie jest już konieczny, po zmianie Listy na ObservableList i wykorzystanie Data Binding
             todoListView.getSelectionModel().select(newItemOnList);
         } else {
-            System.out.println("wciśnięto Anuluj");
+            //System.out.println("wciśnięto Anuluj");
         }
     }
 }
