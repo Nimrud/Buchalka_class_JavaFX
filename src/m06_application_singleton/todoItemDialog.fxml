@@ -18,7 +18,7 @@
                 fx:id="shortDescriptionField"/>
             <Label text="Szczegóły:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
             <TextArea GridPane.rowIndex="1" GridPane.columnIndex="1"
-                fx:id="detailsArea"/>
+                fx:id="detailsArea" wrapText="true"/>
             <Label text="Deadline:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
             <DatePicker GridPane.rowIndex="2" GridPane.columnIndex="1"
                 fx:id="deadlinePicker"/>
