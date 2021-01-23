@@ -7,3 +7,4 @@ Nowa notatka	Notatka dodana przy pomocy okna dialogowego	20 stycznia 2021
 Nowa notatka nr 2	Sprawdzenie poprawności odświeżania listy	21 stycznia 2021
 Notatka nr 3	Sprawdza poprawność domyślnego zaznaczenia	22 stycznia 2021
 Data Binding	Test działania po wykorzystaniu Data Binding	23 stycznia 2021
+Test (Cell Factory)	Test poprawności działania Cell Factory (zmiany sposobu wyświetlania rekordów ze zbliżającym się deadlinem).	24 stycznia 2021
