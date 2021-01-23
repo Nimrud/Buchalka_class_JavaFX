@@ -2,9 +2,13 @@ package m06_application_singleton;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.util.Callback;
@@ -27,8 +31,23 @@ public class Controller {
     private Label todoDeadline;
     @FXML
     private BorderPane mainBorderPane;
+    @FXML
+    private ContextMenu listContextMenu;
 
     public void initialize(){
+        listContextMenu = new ContextMenu();
+        MenuItem deleteMenuItem = new MenuItem("Skasuj notatkę");
+        deleteMenuItem.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                // wybieramy zaznaczony rekord:
+                TodoItem item = todoListView.getSelectionModel().getSelectedItem();
+                deleteItem(item);
+            }
+        });
+
+        // dodajemy do menu kontekstowego stworzony wyżej obiekt deleteMenuItem
+        listContextMenu.getItems().addAll(deleteMenuItem);
 
         // poniższy kod odpowiada za automatyczne wyświetlenie opisu pierwszego rekordu z listy
         todoListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<TodoItem>() {
@@ -71,6 +90,19 @@ public class Controller {
                         }
                     }
                 };
+
+                // dodanie menu kontekstowego do rekordów:
+                cell.emptyProperty().addListener(
+                        // lambda expression (anonymous method):
+                        (obs, wasEmpty, isNowEmpty) -> {
+                            if (isNowEmpty){
+                                cell.setContextMenu(null);
+                            } else {
+                                cell.setContextMenu(listContextMenu);
+                            }
+                        }
+                );
+
                 return cell;
             }
         });
@@ -112,6 +144,29 @@ public class Controller {
             todoListView.getSelectionModel().select(newItemOnList);
         } else {
             //System.out.println("wciśnięto Anuluj");
+        }
+    }
+
+    public void deleteItem(TodoItem item){
+        // dodanie potwierdzenia chęci skasowania rekordu:
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Skasowanie notatki");
+        alert.setHeaderText("Usuwanie notatki: " + item.getShortDescription());
+        alert.setContentText("Czy na pewno? \nWciśnij OK, aby skasować / Anuluj, aby pozostawić");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && (result.get() == ButtonType.OK)){
+            TodoData.getInstance().deleteTodoItem(item);
+        }
+    }
+
+    @FXML
+    public void handleKeyPressed(KeyEvent keyEvent){
+        TodoItem selectedItem = todoListView.getSelectionModel().getSelectedItem();
+        if (selectedItem != null){
+            if (keyEvent.getCode().equals(KeyCode.DELETE)){
+                deleteItem(selectedItem);
+            }
         }
     }
 }
