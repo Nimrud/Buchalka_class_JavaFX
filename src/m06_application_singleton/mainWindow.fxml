@@ -14,6 +14,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.control.ToggleButton?>
 <BorderPane fx:controller="m06_application_singleton.Controller"
             fx:id="mainBorderPane"
             xmlns:fx="http://javafx.com/fxml">
@@ -41,6 +42,16 @@
                             </ImageView>
                         </graphic>
                     </Button>
+                    <ToggleButton fx:id="filterToggleButton" text="Dzisiejsze notatki" onAction="#handleFilterButton">
+                        <tooltip>
+                            <Tooltip text="Wszystkie notatki / Tylko notatki z datą dzisiejszą"/>
+                        </tooltip>
+                        <graphic>
+                            <ImageView>
+                                <Image url="@/toolbarButtonGraphics/general/Find24.gif"/>
+                            </ImageView>
+                        </graphic>
+                    </ToggleButton>
                 </HBox>
             </ToolBar>
         </VBox>

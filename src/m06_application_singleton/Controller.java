@@ -2,6 +2,7 @@ package m06_application_singleton;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -21,6 +22,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 import java.util.Optional;
+import java.util.function.Predicate;
 
 public class Controller {
     @FXML
@@ -33,6 +35,10 @@ public class Controller {
     private BorderPane mainBorderPane;
     @FXML
     private ContextMenu listContextMenu;
+    @FXML
+    private ToggleButton filterToggleButton;
+
+    private FilteredList<TodoItem> filteredList;
 
     public void initialize(){
         listContextMenu = new ContextMenu();
@@ -63,8 +69,19 @@ public class Controller {
             }
         });
 
+        // dodanie filtra do listy:
+        filteredList = new FilteredList<TodoItem>(TodoData.getInstance().getTodoItems(),
+                new Predicate<TodoItem>() {
+                    @Override
+                    // jeśli w poniższej metodzie zwracane jest true, to rekord przechodzi przez filtr (tu: jest wyświetlany)
+                    public boolean test(TodoItem item) {
+                        return true;
+                    }
+                });
+
+
         // dodanie opcji sortowania wyświetlanych rekordów pod kątem deadline'ów:
-        SortedList<TodoItem> sortedList = new SortedList<TodoItem>(TodoData.getInstance().getTodoItems(),
+        SortedList<TodoItem> sortedList = new SortedList<TodoItem>(filteredList,
                 new Comparator<TodoItem>() {
                     @Override
                     public int compare(TodoItem o1, TodoItem o2) {
@@ -178,6 +195,26 @@ public class Controller {
             if (keyEvent.getCode().equals(KeyCode.DELETE)){
                 deleteItem(selectedItem);
             }
+        }
+    }
+
+    @FXML
+    public void handleFilterButton(){
+        if (filterToggleButton.isSelected()){
+            filteredList.setPredicate(new Predicate<TodoItem>() {
+                @Override
+                public boolean test(TodoItem item) {
+                    return (item.getDeadline().equals(LocalDate.now()));
+                }
+            });
+        } else {
+            filteredList.setPredicate(new Predicate<TodoItem>() {
+                @Override
+                public boolean test(TodoItem item) {
+                    // jeśli filterToggleButton jest odznaczony, to wyświetlamy wszystkie rekordy (return true)
+                    return true;
+                }
+            });
         }
     }
 }
