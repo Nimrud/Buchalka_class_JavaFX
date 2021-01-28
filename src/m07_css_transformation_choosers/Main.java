@@ -1,4 +1,4 @@
-package m07_css;
+package m07_css_transformation_choosers;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -17,7 +17,7 @@ public class Main extends Application {
         // więcej motywów można znaleźć w internecie (np. Metro, AeroFX)
 
         primaryStage.setTitle("Hello CSS!");
-        primaryStage.setScene(new Scene(root, 800, 275));
+        primaryStage.setScene(new Scene(root, 800, 400));
         primaryStage.show();
     }
 
