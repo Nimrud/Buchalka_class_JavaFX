@@ -12,4 +12,5 @@ module JavaFX.basics {
     opens m05_application1_TODO_list;
     opens m06_application_singleton;
     opens m07_css_transformation_choosers;
+    opens m08_sceneBuilder;
 }

@@ -73,6 +73,7 @@ public class Controller {
 //        }
 
         // otwieranie w okienku
+        // wymaga dodania "requires javafx.web" do pliku module-info.java
         WebEngine engine = webView.getEngine();
         engine.load("http://www.javafx.com");
     }
