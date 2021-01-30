@@ -13,4 +13,5 @@ module JavaFX.basics {
     opens m06_application_singleton;
     opens m07_css_transformation_choosers;
     opens m08_sceneBuilder;
+    opens m09_challenge;
 }
