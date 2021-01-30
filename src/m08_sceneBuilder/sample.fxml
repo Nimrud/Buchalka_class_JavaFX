@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane alignment="center" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="m08_sceneBuilder.Controller">
+<GridPane alignment="center" stylesheets="@styles.css" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="m08_sceneBuilder.Controller">
    <columnConstraints>
       <ColumnConstraints />
       <ColumnConstraints />
@@ -18,18 +18,18 @@
    <children>
       <HBox spacing="5.0" GridPane.rowIndex="1">
          <children>
-            <Button mnemonicParsing="false" text="Anuluj">
+            <Button mnemonicParsing="false" prefWidth="92.0" text="Anuluj">
                <HBox.margin>
                   <Insets />
                </HBox.margin></Button>
-            <Button mnemonicParsing="false" text="Pomoc" />
-            <Button mnemonicParsing="false" text="OK" />
+            <Button mnemonicParsing="false" style="-fx-text-fill: green;" text="Pomoc" />
+            <Button mnemonicParsing="false" onAction="#handleAction" text="OK" />
          </children>
          <GridPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin>
       </HBox>
-      <Label text="Menu">
+      <Label fx:id="label" text="[wynik]">
          <GridPane.margin>
             <Insets left="5.0" right="5.0" top="5.0" />
          </GridPane.margin></Label>
