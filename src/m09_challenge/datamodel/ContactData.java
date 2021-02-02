@@ -37,6 +37,15 @@ public class ContactData {
 
     // *** Add methods to add/delete/access contacts here ***
 
+    public void addContact(){
+        // TODO
+    }
+
+    public void deleteContact(){
+        // TODO
+    }
+
+
     public void loadContacts() {
         try {
             // First, create a new XMLInputFactory
