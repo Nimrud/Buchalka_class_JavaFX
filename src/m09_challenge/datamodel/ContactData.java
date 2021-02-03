@@ -20,6 +20,11 @@ import java.io.InputStream;
 
 public class ContactData {
 
+    private static ContactData instance = new ContactData();
+    public static ContactData getInstance(){
+        return instance;
+    }
+
     private static final String CONTACTS_FILE = "contacts.xml";
 
     private static final String CONTACT = "contact";
@@ -37,12 +42,12 @@ public class ContactData {
 
     // *** Add methods to add/delete/access contacts here ***
 
-    public void addContact(){
-        // TODO
+    public void addContact(Contact item){
+        contacts.add(item);
     }
 
-    public void deleteContact(){
-        // TODO
+    public void deleteContact(Contact item){
+        contacts.remove(item);
     }
 
 
