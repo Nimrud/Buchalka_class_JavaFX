@@ -20,6 +20,7 @@ import java.io.InputStream;
 
 public class ContactData {
 
+    // **
     private static ContactData instance = new ContactData();
     public static ContactData getInstance(){
         return instance;
@@ -34,6 +35,10 @@ public class ContactData {
     private static final String NOTES = "notes";
 
     private ObservableList<Contact> contacts;
+
+    public ObservableList<Contact> getContacts(){
+        return contacts;
+    }
 
     public ContactData() {
         // *** initialize the contacts list here ***
