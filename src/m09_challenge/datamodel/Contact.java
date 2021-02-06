@@ -8,6 +8,7 @@ public class Contact {
     private SimpleStringProperty phoneNumber = new SimpleStringProperty("");
     private SimpleStringProperty notes = new SimpleStringProperty("");
 
+    // pusty konstruktor jest do ładowania kontaktów z bazy
     public Contact() {
     }
 
@@ -22,28 +23,44 @@ public class Contact {
         return firstName.get();
     }
 
-    public String getLastName() {
-        return lastName.get();
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber.get();
-    }
-
-    public String getNotes() {
-        return notes.get();
+    public SimpleStringProperty firstNameProperty() {
+        return firstName;
     }
 
     public void setFirstName(String firstName) {
         this.firstName.set(firstName);
     }
 
+    public String getLastName() {
+        return lastName.get();
+    }
+
+    public SimpleStringProperty lastNameProperty() {
+        return lastName;
+    }
+
     public void setLastName(String lastName) {
         this.lastName.set(lastName);
     }
 
+    public String getPhoneNumber() {
+        return phoneNumber.get();
+    }
+
+    public SimpleStringProperty phoneNumberProperty() {
+        return phoneNumber;
+    }
+
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber.set(phoneNumber);
+    }
+
+    public String getNotes() {
+        return notes.get();
+    }
+
+    public SimpleStringProperty notesProperty() {
+        return notes;
     }
 
     public void setNotes(String notes) {
