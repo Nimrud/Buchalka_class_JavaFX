@@ -1,9 +1,12 @@
 package m09_challenge;
 
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
+import javafx.scene.layout.BorderPane;
 import m09_challenge.datamodel.Contact;
 import m09_challenge.datamodel.ContactData;
 
@@ -13,12 +16,32 @@ import java.util.Optional;
 public class Controller {
     @FXML
     private TableView<Contact> contactTableView;
+    @FXML
+    private ContextMenu deleteContextMenu;
+    @FXML
+    private BorderPane mainWindow;
+
+    private ContactData data;
 
     public void initialize(){
-        contactTableView.setItems(ContactData.getInstance().getContacts());
+        data = new ContactData();
+        data.loadContacts();
+
+        contactTableView.setItems(data.getContacts());
         contactTableView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+
+        deleteContextMenu = new ContextMenu();
+        MenuItem deleteMenuItem = new MenuItem("Delete Contact");
+        deleteMenuItem.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                Contact contact = contactTableView.getSelectionModel().getSelectedItem();
+                deleteContact(contact);
+            }
+        });
     }
 
+    @FXML
     public void deleteContact(Contact contact){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Delete contact");
@@ -34,13 +57,13 @@ public class Controller {
     @FXML
     public void newContactDialog(){
         Dialog<ButtonType> dialog = new Dialog<>();
-        dialog.initOwner(contactTableView.getScene().getWindow());
-        dialog.setTitle("Add a new contact");
+        dialog.initOwner(mainWindow.getScene().getWindow());
+        dialog.setTitle("Add a new Contact");
 
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("newContact.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("newContact.fxml"));
         try{
-            dialog.getDialogPane().setContent(loader.load());
+            dialog.getDialogPane().setContent(fxmlLoader.load());
         } catch (IOException e){
             System.out.println("Failed to load new Dialog Window");
             e.printStackTrace();
@@ -52,7 +75,7 @@ public class Controller {
 
         Optional<ButtonType> result = dialog.showAndWait();
         if (result.isPresent() && (result.get() == ButtonType.OK)){
-            NewContactController controller = loader.getController();
+            NewContactController controller = fxmlLoader.getController();
             Contact newContact = controller.processNewContact();
             contactTableView.getSelectionModel().select(newContact);
         }

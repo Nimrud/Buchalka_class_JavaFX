@@ -10,6 +10,9 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="m09_challenge.NewContactController"
             prefHeight="400.0" prefWidth="600.0">
+    <headerText>
+        Please fill in the information for the new Contact
+    </headerText>
     <content>
         <GridPane vgap="10" hgap="10">
             <Label text="First Name" GridPane.rowIndex="0" GridPane.columnIndex="0" prefWidth="200" alignment="CENTER_RIGHT"/>
