@@ -14,4 +14,5 @@ module JavaFX.basics {
     opens m07_css_transformation_choosers;
     opens m08_sceneBuilder;
     opens m09_challenge;
+    opens m09_challenge.datamodel;
 }
