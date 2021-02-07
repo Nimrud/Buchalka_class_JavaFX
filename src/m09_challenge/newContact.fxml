@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TextArea?>
+
+<DialogPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="m09_challenge.NewContactController"
+            prefHeight="400.0" prefWidth="600.0">
+    <content>
+        <GridPane vgap="10" hgap="10">
+            <Label text="First Name" GridPane.rowIndex="0" GridPane.columnIndex="0" prefWidth="200" alignment="CENTER_RIGHT"/>
+                <TextField GridPane.rowIndex="0" GridPane.columnIndex="1" fx:id="newFirstName"/>
+            <Label text="Last Name" GridPane.rowIndex="1" GridPane.columnIndex="0" prefWidth="200" alignment="CENTER_RIGHT"/>
+                <TextField GridPane.rowIndex="1" GridPane.columnIndex="1" fx:id="newLastName"/>
+            <Label text="Phone Number" GridPane.rowIndex="2" GridPane.columnIndex="0" prefWidth="200" alignment="CENTER_RIGHT"/>
+                <TextField GridPane.rowIndex="2" GridPane.columnIndex="1" fx:id="newPhoneNumber"/>
+            <Label text="Notes" GridPane.rowIndex="3" GridPane.columnIndex="0" prefWidth="200" alignment="CENTER_RIGHT"/>
+                <TextArea GridPane.rowIndex="3" GridPane.columnIndex="1" fx:id="newNotes" wrapText="true"/>
+        </GridPane>
+    </content>
+
+</DialogPane>

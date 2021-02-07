@@ -8,7 +8,7 @@
         <MenuBar>
             <Menu text="Contacts">
                 <items>
-                    <MenuItem text="Add..."/>
+                    <MenuItem text="Add..." onAction="#newContactDialog"/>
                     <MenuItem text="Edit"/>
                     <MenuItem text="Delete"/>
                     <SeparatorMenuItem/>
