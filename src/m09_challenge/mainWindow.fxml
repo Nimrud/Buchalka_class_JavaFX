@@ -3,6 +3,7 @@
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 
 <BorderPane fx:controller="m09_challenge.Controller"
+            fx:id="mainWindow"
             xmlns:fx="http://javafx.com/fxml">
     <top>
         <MenuBar>
