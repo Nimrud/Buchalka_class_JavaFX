@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
+import javafx.util.Callback;
 import m09_challenge.datamodel.Contact;
 import m09_challenge.datamodel.ContactData;
 
@@ -39,6 +40,27 @@ public class Controller {
                 deleteContact(contact);
             }
         });
+        deleteContextMenu.getItems().addAll(deleteMenuItem);
+
+        contactTableView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        contactTableView.getSelectionModel().selectFirst();
+
+        contactTableView.setRowFactory(new Callback<TableView<Contact>, TableRow<Contact>>() {
+            @Override
+            public TableRow<Contact> call(TableView<Contact> contactTableView) {
+                TableRow<Contact> cell = new TableRow<>();
+                cell.emptyProperty().addListener(
+                        (observable, wasEmpty, isNowEmpty) -> {
+                            if (isNowEmpty){
+                                cell.setContextMenu(null);
+                            } else {
+                                cell.setContextMenu(deleteContextMenu);
+                            }
+                        }
+                );
+                return cell;
+            }
+        });
     }
 
     @FXML
@@ -50,7 +72,7 @@ public class Controller {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && (result.get() == ButtonType.OK)){
-            ContactData.getInstance().deleteContact(contact);
+            data.deleteContact(contact);
         }
     }
 
@@ -77,7 +99,8 @@ public class Controller {
         if (result.isPresent() && (result.get() == ButtonType.OK)){
             NewContactController controller = fxmlLoader.getController();
             Contact newContact = controller.processNewContact();
-            contactTableView.getSelectionModel().select(newContact);
+            data.addContact(newContact);
+            data.saveContacts();
         }
     }
 
