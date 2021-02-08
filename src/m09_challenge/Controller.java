@@ -108,4 +108,11 @@ public class Controller {
     public void handleExit(){
         Platform.exit();
     }
+
+    public void deleteContact(ActionEvent actionEvent) {
+        Contact selectedContact = contactTableView.getSelectionModel().getSelectedItem();
+        if (selectedContact != null){
+            deleteContact(selectedContact);
+        }
+    }
 }
