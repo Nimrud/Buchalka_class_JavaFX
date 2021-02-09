@@ -18,7 +18,7 @@ public class Controller {
     @FXML
     private TableView<Contact> contactTableView;
     @FXML
-    private ContextMenu deleteContextMenu;
+    private ContextMenu contextMenu;
     @FXML
     private BorderPane mainWindow;
 
@@ -32,16 +32,26 @@ public class Controller {
         contactTableView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         contactTableView.getSelectionModel().selectFirst();
 
-        deleteContextMenu = new ContextMenu();
+        contextMenu = new ContextMenu();
+
         MenuItem deleteMenuItem = new MenuItem("Delete Contact");
         deleteMenuItem.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 deleteContact(selectedContact());
-                data.saveContacts();
             }
         });
-        deleteContextMenu.getItems().addAll(deleteMenuItem);
+        contextMenu.getItems().addAll(deleteMenuItem);
+
+        MenuItem updateMenuItem = new MenuItem("Edit Contact");
+        updateMenuItem.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                // TODO
+                editContact(null);
+            }
+        });
+        contextMenu.getItems().addAll(updateMenuItem);
 
 
         contactTableView.setRowFactory(new Callback<TableView<Contact>, TableRow<Contact>>() {
@@ -53,7 +63,7 @@ public class Controller {
                             if (isNowEmpty){
                                 cell.setContextMenu(null);
                             } else {
-                                cell.setContextMenu(deleteContextMenu);
+                                cell.setContextMenu(contextMenu);
                             }
                         }
                 );
@@ -72,6 +82,13 @@ public class Controller {
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && (result.get() == ButtonType.OK)){
             data.deleteContact(contact);
+            data.saveContacts();
+        }
+    }
+
+    public void deleteContact(ActionEvent actionEvent) {
+        if (selectedContact() != null){
+            deleteContact(selectedContact());
         }
     }
 
@@ -106,13 +123,6 @@ public class Controller {
     @FXML
     public void handleExit(){
         Platform.exit();
-    }
-
-    public void deleteContact(ActionEvent actionEvent) {
-        if (selectedContact() != null){
-            deleteContact(selectedContact());
-            data.saveContacts();
-        }
     }
 
     public void editContact(ActionEvent actionEvent) {
