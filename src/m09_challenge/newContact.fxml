@@ -25,5 +25,4 @@
                 <TextArea GridPane.rowIndex="3" GridPane.columnIndex="1" fx:id="newNotes" wrapText="true"/>
         </GridPane>
     </content>
-
 </DialogPane>

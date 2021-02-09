@@ -30,20 +30,19 @@ public class Controller {
 
         contactTableView.setItems(data.getContacts());
         contactTableView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        contactTableView.getSelectionModel().selectFirst();
 
         deleteContextMenu = new ContextMenu();
         MenuItem deleteMenuItem = new MenuItem("Delete Contact");
         deleteMenuItem.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                Contact contact = contactTableView.getSelectionModel().getSelectedItem();
-                deleteContact(contact);
+                deleteContact(selectedContact());
+                data.saveContacts();
             }
         });
         deleteContextMenu.getItems().addAll(deleteMenuItem);
 
-        contactTableView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-        contactTableView.getSelectionModel().selectFirst();
 
         contactTableView.setRowFactory(new Callback<TableView<Contact>, TableRow<Contact>>() {
             @Override
@@ -110,9 +109,41 @@ public class Controller {
     }
 
     public void deleteContact(ActionEvent actionEvent) {
-        Contact selectedContact = contactTableView.getSelectionModel().getSelectedItem();
-        if (selectedContact != null){
-            deleteContact(selectedContact);
+        if (selectedContact() != null){
+            deleteContact(selectedContact());
+            data.saveContacts();
         }
+    }
+
+    public void editContact(ActionEvent actionEvent) {
+        Dialog<ButtonType> dialog = new Dialog<>();
+        dialog.initOwner(mainWindow.getScene().getWindow());
+        dialog.setTitle("Edit an existing Contact");
+
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("editContact.fxml"));
+        try{
+            dialog.getDialogPane().setContent(fxmlLoader.load());
+        } catch (IOException e){
+            System.out.println("Failed to load new Dialog Window");
+            e.printStackTrace();
+            return;
+        }
+        dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+        dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
+
+        EditContactController controller = fxmlLoader.getController();
+        controller.processEditContact(selectedContact());
+
+        Optional<ButtonType> result = dialog.showAndWait();
+        if (result.isPresent() && (result.get() == ButtonType.OK)){
+            controller.updateContact(selectedContact());
+            data.saveContacts();
+        }
+    }
+
+    public Contact selectedContact(){
+        Contact selectedContact = contactTableView.getSelectionModel().getSelectedItem();
+        return selectedContact;
     }
 }
