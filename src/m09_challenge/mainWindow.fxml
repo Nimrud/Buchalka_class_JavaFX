@@ -8,18 +8,19 @@
     <top>
         <MenuBar>
             <Menu text="Contacts">
-                <items>
-                    <MenuItem text="Add..." onAction="#newContactDialog"/>
-                    <MenuItem text="Edit" onAction="#editContact"/>
-                    <MenuItem text="Delete" onAction="#deleteContact"/>
-                    <SeparatorMenuItem/>
-                    <MenuItem text="Exit" onAction="#handleExit"/>
-                </items>
+                <MenuItem text="Add..." onAction="#newContactDialog"/>
+                <MenuItem text="Edit" onAction="#editContact"/>
+                <MenuItem text="Delete" onAction="#deleteContact"/>
+                <SeparatorMenuItem/>
+                <MenuItem text="Exit" onAction="#handleExit"/>
             </Menu>
         </MenuBar>
     </top>
     <center>
         <TableView fx:id="contactTableView">
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+            </columnResizePolicy>
             <columns>
                 <TableColumn text="First Name" prefWidth="250">
                     <cellValueFactory>
