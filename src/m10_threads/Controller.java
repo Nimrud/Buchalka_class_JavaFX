@@ -1,6 +1,5 @@
 package m10_threads;
 
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
@@ -24,15 +23,12 @@ public class Controller {
                         "Maria Konieczna",
                         "Marek Łysek");
 
-                Platform.runLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        listView.setItems(employees);
-                    }
-                });
                 return employees;
             }
         };
+        // wykonanie długotrwałego wątku "w tle" (kod na górze),
+        // a osobno aktualizujemy wątek na poziomie UI:
+        listView.itemsProperty().bind(task.valueProperty());
     }
 
     @FXML
