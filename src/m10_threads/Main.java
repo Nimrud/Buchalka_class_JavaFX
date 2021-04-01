@@ -12,7 +12,7 @@ public class Main extends Application {
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         stage.setTitle("Threads in JavaFX");
-        stage.setScene(new Scene(root, 300, 500));
+        stage.setScene(new Scene(root, 500, 600));
         stage.show();
     }
 
