@@ -17,4 +17,5 @@ module JavaFX.basics {
     opens m09_challenge.datamodel;
     opens m10_threads;
     opens m11_threads_Service;
+    opens m12_databases;
 }
