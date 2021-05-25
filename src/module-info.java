@@ -19,4 +19,5 @@ module JavaFX.basics {
     opens m10_threads;
     opens m11_threads_Service;
     opens m12_databases;
+    opens m12_databases.model;
 }
