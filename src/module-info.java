@@ -4,6 +4,7 @@ module JavaFX.basics {
     requires oracleIcons;
     requires java.desktop;
     requires javafx.web;
+    requires java.sql;
 
     opens m01_sample;
     opens m02_layouts;

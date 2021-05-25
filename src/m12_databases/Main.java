@@ -1,10 +1,12 @@
 package m12_databases;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import m12_databases.model.DataSource;
 
 public class Main extends Application {
 
@@ -16,6 +18,22 @@ public class Main extends Application {
         primaryStage.show();
     }
 
+    @Override
+    public void init() throws Exception {
+        super.init();
+        if (!DataSource.getInstance().open()) {
+            System.out.println("Error! Couldn't connect to database!");
+            Platform.exit();
+        } else {
+            DataSource.getInstance().open();
+        }
+    }
+
+    @Override
+    public void stop() throws Exception {
+        super.stop();
+        DataSource.getInstance().close();
+    }
 
     public static void main(String[] args) {
         launch(args);
