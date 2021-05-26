@@ -115,6 +115,10 @@ public class DataSource {
     public static final String QUERY_SONGS = "SELECT * FROM " +
             TABLE_ARTISTS_SONGS_VIEW + " WHERE " + COLUMN_SONGS_TITLE + " = ? AND album = ? AND " + COLUMN_ARTISTS_NAME + " = ?";
 
+    public static final String QUERY_ALBUMS_BY_ARTIST_ID = "SELECT * FROM " +
+            TABLE_ALBUMS + " WHERE " + COLUMN_ALBUMS_ARTIST + " = ? ORDER BY " +
+            COLUMN_ALBUMS_NAME + " COLLATE NOCASE";
+
     private PreparedStatement insertIntoArtists;
     private PreparedStatement insertIntoAlbums;
     private PreparedStatement insertIntoSongs;
@@ -122,6 +126,7 @@ public class DataSource {
     private PreparedStatement queryArtists;
     private PreparedStatement queryAlbums;
     private PreparedStatement querySongs;
+    private PreparedStatement queryAlbumsByArtistId;
 
     private  Connection conn;
 
@@ -144,6 +149,7 @@ public class DataSource {
             queryArtists = conn.prepareStatement(QUERY_ARTIST);
             queryAlbums = conn.prepareStatement(QUERY_ALBUMS);
             querySongs = conn.prepareStatement(QUERY_SONGS);
+            queryAlbumsByArtistId = conn.prepareStatement(QUERY_ALBUMS_BY_ARTIST_ID);
             return true;
         } catch (SQLException e) {
             System.out.println("Couldn't open database: " + e.getMessage());
@@ -173,6 +179,9 @@ public class DataSource {
             }
             if (querySongs != null) {
                 querySongs.close();
+            }
+            if (queryAlbumsByArtistId != null) {
+                queryAlbumsByArtistId.close();
             }
             if (conn != null) {
                 conn.close();
@@ -233,6 +242,26 @@ public class DataSource {
             } catch (SQLException e){
                 System.out.println("Couldn't close the statement: " + e.getMessage());
             }
+        }
+    }
+
+    public List<Album> queryAlbumsByArtistId(int artistId) {
+        try {
+            queryAlbumsByArtistId.setInt(1, artistId);
+            ResultSet rs = queryAlbumsByArtistId.executeQuery();
+
+            List<Album> albums = new ArrayList<>();
+            while (rs.next()) {
+                Album album = new Album();
+                album.setId(rs.getInt(COLUMN_ALBUMS_ID));
+                album.setName(rs.getString(COLUMN_ALBUMS_NAME));
+                album.setArtistId(rs.getInt(artistId));
+                albums.add(album);
+            }
+            return albums;
+        } catch (SQLException e) {
+            System.out.println("Query failed: " + e.getMessage());
+            return null;
         }
     }
 
