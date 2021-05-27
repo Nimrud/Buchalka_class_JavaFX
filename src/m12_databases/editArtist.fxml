@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<DialogPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="m12_databases.EditArtistController"
+            prefHeight="300.0" prefWidth="400.0">
+    <headerText>
+        Please change the information of an existing artist
+    </headerText>
+    <content>
+        <GridPane vgap="10" hgap="10">
+            <Label text="VALUE" GridPane.rowIndex="0" GridPane.columnIndex="1" style="-fx-font-weight: BOLD"/>
+
+            <Label text="Name" GridPane.rowIndex="1" GridPane.columnIndex="0" prefWidth="120" alignment="CENTER_RIGHT"/>
+            <TextField GridPane.rowIndex="1" GridPane.columnIndex="1" fx:id="name" prefWidth="300"/>
+
+        </GridPane>
+    </content>
+</DialogPane>

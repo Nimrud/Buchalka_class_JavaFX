@@ -52,6 +52,29 @@ public class Controller {
 
             new Thread(task).start();
     }
+
+    @FXML
+    public void updateArtistName() {
+        final Artist artist = (Artist) artistTable.getItems().get(2);   // zmieniamy "AC DC" na "AC/DC" (trzeci rekord)
+
+        Task<Boolean> task = new Task<Boolean>() {
+            @Override
+            protected Boolean call() throws Exception {
+                return DataSource.getInstance().updateArtistName(artist.getId(), "AC/DC");
+            }
+        };
+
+        // poniższy kod wynika z buga w JavaFX, przez który aplikacja nie widzi zmian w Table Views i Observable Lists
+        // kod wymusza aktualizację
+        task.setOnSucceeded(e -> {
+            if (task.valueProperty().get()) {   // wartość true, jeśli update w bazie danych się powiódł
+                artist.setName("AC/DC");        // aktualizujemy WYŚWIETLANĄ w UI wartość
+                artistTable.refresh();
+            }
+        });
+
+        new Thread(task).start();
+    }
 }
 
 class GetAllArtistsTask extends Task {
