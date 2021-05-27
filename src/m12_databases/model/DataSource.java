@@ -119,6 +119,9 @@ public class DataSource {
             TABLE_ALBUMS + " WHERE " + COLUMN_ALBUMS_ARTIST + " = ? ORDER BY " +
             COLUMN_ALBUMS_NAME + " COLLATE NOCASE";
 
+    public static final String UPDATE_ARTIST_NAME = "UPDATE " + TABLE_ARTISTS +
+            " SET " + COLUMN_ARTISTS_NAME + " = ? WHERE " + COLUMN_ARTISTS_ID + " = ?";
+
     private PreparedStatement insertIntoArtists;
     private PreparedStatement insertIntoAlbums;
     private PreparedStatement insertIntoSongs;
@@ -127,6 +130,8 @@ public class DataSource {
     private PreparedStatement queryAlbums;
     private PreparedStatement querySongs;
     private PreparedStatement queryAlbumsByArtistId;
+
+    private PreparedStatement updateArtistName;
 
     private  Connection conn;
 
@@ -150,6 +155,7 @@ public class DataSource {
             queryAlbums = conn.prepareStatement(QUERY_ALBUMS);
             querySongs = conn.prepareStatement(QUERY_SONGS);
             queryAlbumsByArtistId = conn.prepareStatement(QUERY_ALBUMS_BY_ARTIST_ID);
+            updateArtistName = conn.prepareStatement(UPDATE_ARTIST_NAME);
             return true;
         } catch (SQLException e) {
             System.out.println("Couldn't open database: " + e.getMessage());
@@ -182,6 +188,9 @@ public class DataSource {
             }
             if (queryAlbumsByArtistId != null) {
                 queryAlbumsByArtistId.close();
+            }
+            if (updateArtistName != null) {
+                updateArtistName.close();
             }
             if (conn != null) {
                 conn.close();
@@ -513,6 +522,20 @@ public class DataSource {
                     System.out.println("AutoCommit On failed: " + e3.getMessage());
                 }
             }
+        }
+    }
+
+    public boolean updateArtistName(int artistId, String newName) {
+        try {
+            updateArtistName.setString(1, newName);
+            updateArtistName.setInt(2, artistId);
+
+            int rowsAffected = updateArtistName.executeUpdate();
+
+            return rowsAffected == 1;
+        } catch (SQLException e) {
+            System.out.println("Error updating artist name: " + e.getMessage());
+            return false;
         }
     }
 }

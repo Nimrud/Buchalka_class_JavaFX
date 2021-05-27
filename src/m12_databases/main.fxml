@@ -25,7 +25,7 @@
             <children>
                 <Button onAction="#listArtists" maxWidth="Infinity" mnemonicParsing="false" text="List Artists" />
                 <Button onAction="#listAlbumsByArtist" maxWidth="Infinity" mnemonicParsing="false" text="Show Albums (artist)" />
-                <Button maxWidth="Infinity" mnemonicParsing="false" text="Update Artist" />
+                <Button onAction="#updateArtistName" maxWidth="Infinity" mnemonicParsing="false" text="Update Artist" />
             </children>
             <BorderPane.margin>
                 <Insets right="10.0" />
