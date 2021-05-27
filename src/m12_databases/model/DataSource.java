@@ -216,6 +216,11 @@ public class DataSource {
 
             List<Artist> artists = new ArrayList<>();
             while (rs.next()){
+                try {
+                    Thread.sleep(20);
+                } catch (InterruptedException e) {
+                    System.out.println("Interrupted: " + e.getMessage());
+                }
                 Artist artist = new Artist();
                 artist.setId(rs.getInt(INDEX_ARTISTS_ID));    // wykorzystanie indeksów kolumn jest wydajniejsze
                 //artist.setId(rs.getInt(COLUMN_ARTISTS_ID));
@@ -255,7 +260,7 @@ public class DataSource {
                 Album album = new Album();
                 album.setId(rs.getInt(COLUMN_ALBUMS_ID));
                 album.setName(rs.getString(COLUMN_ALBUMS_NAME));
-                album.setArtistId(rs.getInt(artistId));
+                album.setArtistId(artistId);
                 albums.add(album);
             }
             return albums;
