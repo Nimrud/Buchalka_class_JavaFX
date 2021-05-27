@@ -9,11 +9,12 @@ public class EditArtistController {
     @FXML
     private TextField name;
 
-    public void processEditName(Artist artist) {
-        name.setText(artist.getName());
+    public void prepareToEditName(Artist artist) {
+        name.setText(artist.getName());   // pobiera starą nazwę i wstawia do pola name w pliku fxml
     }
 
-    public void updateName(Artist artist) {
+    public Artist updateName(Artist artist) {
         artist.setName(name.getText().trim());
+        return artist;
     }
 }

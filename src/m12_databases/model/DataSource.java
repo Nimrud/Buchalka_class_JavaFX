@@ -226,7 +226,7 @@ public class DataSource {
             List<Artist> artists = new ArrayList<>();
             while (rs.next()){
                 try {
-                    Thread.sleep(20);
+                    Thread.sleep(8);
                 } catch (InterruptedException e) {
                     System.out.println("Interrupted: " + e.getMessage());
                 }
